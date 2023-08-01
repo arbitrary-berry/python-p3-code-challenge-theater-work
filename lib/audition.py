@@ -7,9 +7,20 @@ class Audition:
         self.actor = actor
         self.location = location
         self.phone = phone
+        self.hired = False
         Audition.all.append(self)
 
-    def hired(self):
-        'true' if False else 'false'
+    @property
+    def actor(self):
+        return self._actor
+    
+    @actor.setter
+    def actor(self, actor):
+        if not 3 < len(actor) < 20:
+            raise Exception("Actor name must be between 3 and 20 characters ")
+        self._actor = actor
 
-    pass
+    def call_back(self):
+        self.hired = True
+    def __repr__(self):
+        return f"<Audition | actor: {self.actor}, hired: {self.hired}>"
